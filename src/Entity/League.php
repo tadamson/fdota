@@ -52,7 +52,7 @@ class League {
     private $end_date;
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -60,7 +60,7 @@ class League {
     }
 
     /**
-     * @param mixed $id
+     * @param integer $id
      */
     public function setId($id)
     {
@@ -68,7 +68,7 @@ class League {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -76,7 +76,7 @@ class League {
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
@@ -84,7 +84,7 @@ class League {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -92,7 +92,7 @@ class League {
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription($description)
     {
