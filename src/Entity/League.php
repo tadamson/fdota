@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -50,6 +52,16 @@ class League {
      * @Assert\NotNull()
      */
     private $end_date;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tournament", mappedBy="League")
+     */
+    private $tournaments;
+
+    public function __construct()
+    {
+        $this->tournaments = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -145,5 +157,41 @@ class League {
     public function setEndDate($end_date)
     {
         $this->end_date = $end_date;
+    }
+
+    /**
+     * @return Collection|Tournament[]
+     */
+    public function getTournaments(): Collection
+    {
+        return $this->tournaments;
+    }
+
+    /**
+     * @param Tournament $tournament
+     * @return League
+     */
+    public function addTournament(Tournament $tournament): self
+    {
+        if (!$this->tournaments->contains($tournament)) {
+            $this->tournaments[] = $tournament;
+            $tournament->addLeague($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Tournament $tournament
+     * @return League
+     */
+    public function removeTournament(Tournament $tournament): self
+    {
+        if ($this->tournaments->contains($tournament)) {
+            $this->tournaments->removeElement($tournament);
+            $tournament->removeLeague($this);
+        }
+
+        return $this;
     }
 }
