@@ -15,12 +15,6 @@ class user extends AbstractSteamUser
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     */
-    private $steam_id;
-
-    /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
@@ -122,4 +116,5 @@ class user extends AbstractSteamUser
     {
         $this->last_seen = $last_seen;
     }
+
 }
