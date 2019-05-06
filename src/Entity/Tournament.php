@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tournament")
+ * @ORM\Table(name="tournaments")
  */
 class Tournament {
 
@@ -50,9 +50,15 @@ class Tournament {
      */
     private $leagues;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Team", inversedBy="tournaments")
+     */
+    private $teams;
+
     public function __construct()
     {
         $this->leagues = new ArrayCollection();
+        $this->teams = new ArrayCollection();
     }
 
     /**
@@ -156,6 +162,32 @@ class Tournament {
     {
         if ($this->leagues->contains($league)) {
             $this->leagues->removeElement($league);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Team[]
+     */
+    public function getTeams(): Collection
+    {
+        return $this->teams;
+    }
+
+    public function addTeam(Team $team): self
+    {
+        if (!$this->teams->contains($team)) {
+            $this->teams[] = $team;
+        }
+
+        return $this;
+    }
+
+    public function removeTeam(Team $team): self
+    {
+        if ($this->teams->contains($team)) {
+            $this->teams->removeElement($team);
         }
 
         return $this;

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
+ * @ORM\Table("players")
  */
 class Player
 {
@@ -37,6 +38,11 @@ class Player
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $bio_link;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Team", inversedBy="Players")
+     */
+    private $team;
 
     public function getId(): ?int
     {
@@ -87,6 +93,18 @@ class Player
     public function setBioLink(?string $bio_link): self
     {
         $this->bio_link = $bio_link;
+
+        return $this;
+    }
+
+    public function getTeam(): ?Team
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Team $team): self
+    {
+        $this->team = $team;
 
         return $this;
     }
