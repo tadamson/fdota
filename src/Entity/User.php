@@ -85,34 +85,22 @@ class user extends AbstractSteamUser
         $this->active = $active;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDateCreated()
+    public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->date_created;
     }
 
-    /**
-     * @param \DateTime $date_created
-     */
-    public function setDateCreated($date_created)
+    public function setDateCreated(?\DateTimeInterface $date_created): self
     {
         $this->date_created = $date_created;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getLastSeen()
+    public function getLastSeen(): ?\DateTimeInterface
     {
         return $this->last_seen;
     }
 
-    /**
-     * @param \DateTime $last_seen
-     */
-    public function setLastSeen($last_seen)
+    public function setLastSeen(?\DateTimeInterface $last_seen): self
     {
         $this->last_seen = $last_seen;
     }
