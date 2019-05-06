@@ -44,6 +44,13 @@ class Player
      */
     private $team;
 
+    /**
+     * @ORM\Column(type="integer")
+     *
+     * based on recent/past fantasy point ratings
+     */
+    private $draft_cost;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +112,18 @@ class Player
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
+
+        return $this;
+    }
+
+    public function getDraftCost(): ?int
+    {
+        return $this->draft_cost;
+    }
+
+    public function setDraftCost(int $draft_cost): self
+    {
+        $this->draft_cost = $draft_cost;
 
         return $this;
     }

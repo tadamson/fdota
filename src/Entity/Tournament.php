@@ -60,6 +60,13 @@ class Tournament {
      */
     private $matches;
 
+    /**
+     * @ORM\Column(type="float")
+     *
+     * weight multiplier to scale some tourneys over others (i.e. TI/majors count for more)
+     */
+    private $fantasy_weight;
+
     public function __construct()
     {
         $this->leagues = new ArrayCollection();
@@ -215,6 +222,17 @@ class Tournament {
             }
         }
 
+        return $this;
+    }
+
+    public function getFantasyWeight(): ?float
+    {
+        return $this->fantasy_weight;
+    }
+
+    public function setFantasyWeight(float $fantasy_weight): self
+    {
+        $this->fantasy_weight = $fantasy_weight;
         return $this;
     }
 
