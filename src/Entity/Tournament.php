@@ -58,13 +58,13 @@ class Tournament {
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="tournament")
      */
-    private $Matches;
+    private $matches;
 
     public function __construct()
     {
         $this->leagues = new ArrayCollection();
         $this->teams = new ArrayCollection();
-        $this->Matches = new ArrayCollection();
+        $this->matches = new ArrayCollection();
     }
 
     /**
@@ -192,13 +192,13 @@ class Tournament {
      */
     public function getMatches(): Collection
     {
-        return $this->Matches;
+        return $this->matches;
     }
 
     public function addMatch(Match $match): self
     {
-        if (!$this->Matches->contains($match)) {
-            $this->Matches[] = $match;
+        if (!$this->matches->contains($match)) {
+            $this->matches[] = $match;
             $match->setTournament($this);
         }
 
@@ -207,8 +207,8 @@ class Tournament {
 
     public function removeMatch(Match $match): self
     {
-        if ($this->Matches->contains($match)) {
-            $this->Matches->removeElement($match);
+        if ($this->matches->contains($match)) {
+            $this->matches->removeElement($match);
             // set the owning side to null (unless already changed)
             if ($match->getTournament() === $this) {
                 $match->setTournament(null);
