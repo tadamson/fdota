@@ -19,6 +19,13 @@ class Match
     private $id;
 
     /**
+     * @ORM\Column(type="integer")
+     *
+     * from dota2 api
+     */
+    private $dota_match_id;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Team", inversedBy="matches")
      */
     private $teams;
@@ -37,6 +44,22 @@ class Match
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDotaMatchId()
+    {
+        return $this->dota_match_id;
+    }
+
+    /**
+     * @param mixed $dota_match_id
+     */
+    public function setDotaMatchId($dota_match_id): void
+    {
+        $this->dota_match_id = $dota_match_id;
     }
 
     /**
