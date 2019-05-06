@@ -40,6 +40,11 @@ class Match
      */
     private $tournament;
 
+    /**
+     * @ORM\Column(type="datetimetz", nullable=true)
+     */
+    private $date_played;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
@@ -127,6 +132,18 @@ class Match
     public function setTournament(?Tournament $tournament): self
     {
         $this->tournament = $tournament;
+
+        return $this;
+    }
+
+    public function getDatePlayed(): ?\DateTimeInterface
+    {
+        return $this->date_played;
+    }
+
+    public function setDatePlayed(?\DateTimeInterface $date_played): self
+    {
+        $this->date_played = $date_played;
 
         return $this;
     }

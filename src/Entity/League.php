@@ -127,34 +127,22 @@ class League {
         $this->active = $active;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getStartDate()
+    public function getStartDate(): ?\DateTimeInterface
     {
         return $this->start_date;
     }
 
-    /**
-     * @param \DateTime $start_date
-     */
-    public function setStartDate($start_date)
+    public function setStartDate(?\DateTimeInterface $start_date):self
     {
         $this->start_date = $start_date;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getEndDate()
+    public function getEndDate(): ?\DateTimeInterface
     {
         return $this->end_date;
     }
 
-    /**
-     * @param \DateTime $end_date
-     */
-    public function setEndDate($end_date)
+    public function setEndDate(?\DateTimeInterface $end_date):self
     {
         $this->end_date = $end_date;
     }
