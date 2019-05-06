@@ -77,47 +77,27 @@ class Tournament {
     /**
      * @return integer
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param integer $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getValveLeagueId()
+    public function getValveLeagueId(): ?int
     {
         return $this->valve_league_id;
     }
 
-    /**
-     * @param integer $valve_league_id
-     */
-    public function setValveLeagueId($valve_league_id)
+    public function setValveLeagueId(?int $valve_league_id)
     {
         $this->valve_league_id = $valve_league_id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
-    public function setName($name)
+    public function setName(?string $name)
     {
         $this->name = $name;
     }
@@ -181,7 +161,6 @@ class Tournament {
         if (!$this->teams->contains($team)) {
             $this->teams[] = $team;
         }
-
         return $this;
     }
 
@@ -190,7 +169,6 @@ class Tournament {
         if ($this->teams->contains($team)) {
             $this->teams->removeElement($team);
         }
-
         return $this;
     }
 
@@ -208,7 +186,6 @@ class Tournament {
             $this->matches[] = $match;
             $match->setTournament($this);
         }
-
         return $this;
     }
 
@@ -221,7 +198,6 @@ class Tournament {
                 $match->setTournament(null);
             }
         }
-
         return $this;
     }
 

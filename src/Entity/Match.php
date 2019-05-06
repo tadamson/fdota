@@ -56,20 +56,15 @@ class Match
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDotaMatchId()
+    public function getDotaMatchId(): ?int
     {
         return $this->dota_match_id;
     }
 
-    /**
-     * @param mixed $dota_match_id
-     */
-    public function setDotaMatchId($dota_match_id): void
+    public function setDotaMatchId(?int $dota_match_id): self
     {
         $this->dota_match_id = $dota_match_id;
+        return $this;
     }
 
     /**
@@ -85,7 +80,6 @@ class Match
         if (!$this->teams->contains($team)) {
             $this->teams[] = $team;
         }
-
         return $this;
     }
 
@@ -94,7 +88,6 @@ class Match
         if ($this->teams->contains($team)) {
             $this->teams->removeElement($team);
         }
-
         return $this;
     }
 
@@ -111,7 +104,6 @@ class Match
         if (!$this->players->contains($player) && count($this->players) < 10 ) {
             $this->players[] = $player;
         }
-
         return $this;
     }
 
@@ -120,7 +112,6 @@ class Match
         if ($this->players->contains($player)) {
             $this->players->removeElement($player);
         }
-
         return $this;
     }
 
@@ -132,7 +123,6 @@ class Match
     public function setTournament(?Tournament $tournament): self
     {
         $this->tournament = $tournament;
-
         return $this;
     }
 
@@ -144,7 +134,6 @@ class Match
     public function setDatePlayed(?\DateTimeInterface $date_played): self
     {
         $this->date_played = $date_played;
-
         return $this;
     }
 }

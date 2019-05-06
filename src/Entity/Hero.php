@@ -33,67 +33,47 @@ class Hero
      */
     private $img_tiny;
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
+    public function setId(?int $id): self
     {
         $this->id = $id;
+        return $self;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImg()
+    public function getImg(): ?string
     {
         return $this->img;
     }
 
-    /**
-     * @param mixed $img
-     */
-    public function setImg($img): void
+    public function setImg(?string $img): self
     {
         $this->img = $img;
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getImgTiny()
+    public function getImgTiny(): ?string
     {
         return $this->img_tiny;
     }
 
-    /**
-     * @param mixed $img_tiny
-     */
-    public function setImgTiny($img_tiny): void
+    public function setImgTiny(?string $img_tiny): self
     {
         $this->img_tiny = $img_tiny;
+        return $this;
     }
 }

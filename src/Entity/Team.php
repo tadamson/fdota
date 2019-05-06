@@ -52,28 +52,20 @@ class Team
         $this->matches = new ArrayCollection();
     }
 
-    /**
-     * @return integer
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -90,7 +82,6 @@ class Team
             $this->Players[] = $player;
             $player->setTeam($this);
         }
-
         return $this;
     }
 
@@ -103,7 +94,6 @@ class Team
                 $player->setTeam(null);
             }
         }
-
         return $this;
     }
 
@@ -115,7 +105,6 @@ class Team
     public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
-
         return $this;
     }
 
@@ -133,7 +122,6 @@ class Team
             $this->tournaments[] = $tournament;
             $tournament->addTeam($this);
         }
-
         return $this;
     }
 
@@ -143,7 +131,6 @@ class Team
             $this->tournaments->removeElement($tournament);
             $tournament->removeTeam($this);
         }
-
         return $this;
     }
 
@@ -161,7 +148,6 @@ class Team
             $this->matches[] = $match;
             $match->addTeam($this);
         }
-
         return $this;
     }
 
@@ -171,7 +157,6 @@ class Team
             $this->matches->removeElement($match);
             $match->removeTeam($this);
         }
-
         return $this;
     }
 }
