@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,16 @@ class Player
      * based on recent/past fantasy point ratings
      */
     private $draft_cost;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PlayerStats", mappedBy="player", orphanRemoval=true)
+     */
+    private $playerStats;
+
+    public function __construct()
+    {
+        $this->playerStats = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,6 +136,37 @@ class Player
     public function setDraftCost(int $draft_cost): self
     {
         $this->draft_cost = $draft_cost;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PlayerStats[]
+     */
+    public function getPlayerStats(): Collection
+    {
+        return $this->playerStats;
+    }
+
+    public function addPlayerStat(PlayerStats $playerStat): self
+    {
+        if (!$this->playerStats->contains($playerStat)) {
+            $this->playerStats[] = $playerStat;
+            $playerStat->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlayerStat(PlayerStats $playerStat): self
+    {
+        if ($this->playerStats->contains($playerStat)) {
+            $this->playerStats->removeElement($playerStat);
+            // set the owning side to null (unless already changed)
+            if ($playerStat->getPlayer() === $this) {
+                $playerStat->setPlayer(null);
+            }
+        }
 
         return $this;
     }
