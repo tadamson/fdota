@@ -35,6 +35,18 @@ class MatchPlayer
      */
     private $map_side;
 
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     *
+     * in-game position played, 1-5
+     */
+    private $role;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Hero", cascade={"persist", "remove"})
+     */
+    private $hero_played;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +85,29 @@ class MatchPlayer
     {
         $this->map_side = $map_side;
 
+        return $this;
+    }
+
+    public function getRole(): ?int
+    {
+        return $this->role;
+    }
+
+    public function setRole(?int $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getHeroPlayed(): ?Hero
+    {
+        return $this->hero_played;
+    }
+
+    public function setHeroPlayed(?Hero $hero_played): self
+    {
+        $this->hero_played = $hero_played;
         return $this;
     }
 }
