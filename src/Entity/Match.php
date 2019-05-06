@@ -35,6 +35,11 @@ class Match
      */
     private $players;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Tournament", inversedBy="Matches")
+     */
+    private $tournament;
+
     public function __construct()
     {
         $this->teams = new ArrayCollection();
@@ -110,6 +115,18 @@ class Match
         if ($this->players->contains($player)) {
             $this->players->removeElement($player);
         }
+
+        return $this;
+    }
+
+    public function getTournament(): ?Tournament
+    {
+        return $this->tournament;
+    }
+
+    public function setTournament(?Tournament $tournament): self
+    {
+        $this->tournament = $tournament;
 
         return $this;
     }
