@@ -32,6 +32,11 @@ class PlayerStats
      */
     private $date_recorded;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $match_count;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class PlayerStats
     public function setDateRecorded(\DateTimeInterface $date_recorded): self
     {
         $this->date_recorded = $date_recorded;
+
+        return $this;
+    }
+
+    public function getMatchCount(): ?int
+    {
+        return $this->match_count;
+    }
+
+    public function setMatchCount(int $match_count): self
+    {
+        $this->match_count = $match_count;
 
         return $this;
     }

@@ -62,8 +62,8 @@ class PlayerStatsRepository extends ServiceEntityRepository
         try {
             $conn = $this->getEntityManager()->getConnection();
             $sql = <<<EOSQL
-INSERT INTO player_stats (player_id, date_recorded, fantasy_points)
-SELECT player_id, NOW() as date_recorded, SUM(fantasy_points)
+INSERT INTO player_stats (player_id, date_recorded, fantasy_points, matcn_count)
+SELECT player_id, NOW() as date_recorded, SUM(fantasy_points), COUNT(*) AS match_count
 FROM match_players
 WHERE date_played >= :since
 GROUP BY player_id
@@ -71,7 +71,7 @@ EOSQL;
             $stmt = $conn->prepare($sql);
             $stmt->execute(['since' => $since]);
         } catch (DBALException $e) {
-            exit;
+            // TODO: implement some logging
         }
     }
 }
