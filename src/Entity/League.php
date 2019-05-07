@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="league")
+ * @ORM\Table(name="leagues")
  *
  * Leagues are 1+ tournaments i.e. for combining multiple small tourneys that wouldn't be very interesting on their own.
  * Major tournaments will be 1:1 with leagues, but this allows for multiple overlapping leagues (e.g. an entire 3 month
