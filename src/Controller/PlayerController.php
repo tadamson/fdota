@@ -26,8 +26,8 @@ class PlayerController extends FOSRestController
     public function getPlayerAction()
     {
         $repository = $this->getDoctrine()->getRepository(Player::class);
-        $movies = $repository->findall();
-        return $this->handleView($this->view($movies));
+        $players = $repository->findall();
+        return $this->handleView($this->view($players));
     }
 
     /**
@@ -38,13 +38,13 @@ class PlayerController extends FOSRestController
      */
     public function postPlayerAction(Request $request)
     {
-        $movie = new Player();
-        $form = $this->createForm(PlayerType::class, $movie);
+        $player = new Player();
+        $form = $this->createForm(PlayerType::class, $player);
         $data = json_decode($request->getContent(), true);
         $form->submit($data);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($movie);
+            $em->persist($player);
             $em->flush();
             return $this->handleView($this->view(['status' => 'ok'], Response::HTTP_CREATED));
         }
