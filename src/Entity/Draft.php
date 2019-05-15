@@ -33,7 +33,7 @@ class Draft
      * @ORM\ManyToOne(targetEntity="App\Entity\League", inversedBy="drafst")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $league_id;
+    private $league;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\DraftPick", mappedBy="draft_id")
@@ -74,14 +74,14 @@ class Draft
         return $this;
     }
 
-    public function getLeagueId(): ?League
+    public function getLeague(): ?League
     {
-        return $this->league_id;
+        return $this->league;
     }
 
-    public function setLeagueId(?League $league_id): self
+    public function setLeagueId(?League $league): self
     {
-        $this->league_id = $league_id;
+        $this->league = $league;
 
         return $this;
     }
