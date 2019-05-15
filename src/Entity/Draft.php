@@ -98,7 +98,7 @@ class Draft
     {
         if (!$this->picks->contains($pick)) {
             $this->picks[] = $pick;
-            $pick->setDraftId($this);
+            $pick->setDraft($this);
         }
 
         return $this;
@@ -109,8 +109,8 @@ class Draft
         if ($this->picks->contains($pick)) {
             $this->picks->removeElement($pick);
             // set the owning side to null (unless already changed)
-            if ($pick->getDraftId() === $this) {
-                $pick->setDraftId(null);
+            if ($pick->getDraft() === $this) {
+                $pick->setDraft(null);
             }
         }
 
