@@ -58,9 +58,15 @@ class League {
      */
     private $tournaments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Draft", mappedBy="league_id")
+     */
+    private $drafts;
+
     public function __construct()
     {
         $this->tournaments = new ArrayCollection();
+        $this->drafts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +155,37 @@ class League {
         if ($this->tournaments->contains($tournament)) {
             $this->tournaments->removeElement($tournament);
             $tournament->removeLeague($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Draft[]
+     */
+    public function getDrafts(): Collection
+    {
+        return $this->drafts;
+    }
+
+    public function addDraft(Draft $draft): self
+    {
+        if (!$this->drafts->contains($draft)) {
+            $this->drafts[] = $draft;
+            $draft->setLeagueId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDraft(Draft $draft): self
+    {
+        if ($this->drafts->contains($draft)) {
+            $this->drafts->removeElement($draft);
+            // set the owning side to null (unless already changed)
+            if ($draft->getLeagueId() === $this) {
+                $draft->setLeagueId(null);
+            }
         }
 
         return $this;
