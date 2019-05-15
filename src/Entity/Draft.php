@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,16 @@ class Draft
      * @ORM\JoinColumn(nullable=false)
      */
     private $league_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\DraftPick", mappedBy="draft_id")
+     */
+    private $picks;
+
+    public function __construct()
+    {
+        $this->picks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +82,37 @@ class Draft
     public function setLeagueId(?League $league_id): self
     {
         $this->league_id = $league_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DraftPick[]
+     */
+    public function getPicks(): Collection
+    {
+        return $this->picks;
+    }
+
+    public function addPick(DraftPick $pick): self
+    {
+        if (!$this->picks->contains($pick)) {
+            $this->picks[] = $pick;
+            $pick->setDraftId($this);
+        }
+
+        return $this;
+    }
+
+    public function removePick(DraftPick $pick): self
+    {
+        if ($this->picks->contains($pick)) {
+            $this->picks->removeElement($pick);
+            // set the owning side to null (unless already changed)
+            if ($pick->getDraftId() === $this) {
+                $pick->setDraftId(null);
+            }
+        }
 
         return $this;
     }
