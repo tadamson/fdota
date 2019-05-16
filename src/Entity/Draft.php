@@ -30,7 +30,7 @@ class Draft
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\League", inversedBy="drafst")
+     * @ORM\ManyToOne(targetEntity="App\Entity\League", inversedBy="drafts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $league;
