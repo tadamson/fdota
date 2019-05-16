@@ -122,10 +122,9 @@ class Draft
      */
     private function validCost() :bool
     {
-        if (count($this->picks) > 0) {
+        if (count($this->getPicks()) > 0) {
             $pick_total = 0;
-            foreach ($this->picks as $pick)
-            /** @var DraftPick $pick */
+            foreach ($this->getPicks() as $pick)
             {
                 if ($pick->getCost() > 0)
                     $pick_total += $pick->getCost();
