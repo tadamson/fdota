@@ -120,7 +120,7 @@ class Draft
     /**
      * @return bool
      */
-    private function validCost() :bool
+    private function validCost(): bool
     {
         if (count($this->getPicks()) > 0) {
             $pick_total = 0;
