@@ -7,7 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Knojector\SteamAuthenticationBundle\User\AbstractSteamUser;
 use Doctrine\ORM\Mapping as ORM;
 
-class user extends AbstractSteamUser
+/**
+ * Class User
+ * @package App\Entity
+ * @ORM\Entity()
+ */
+class User extends AbstractSteamUser
 {
     /**
      * @ORM\Id
@@ -18,7 +23,6 @@ class user extends AbstractSteamUser
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
      */
     private $name;
 
@@ -29,15 +33,8 @@ class user extends AbstractSteamUser
 
     /**
      * @ORM\Column(type="datetimetz")
-     * @Assert\NotNull()
      */
     private $date_created;
-
-    /**
-     * @ORM\Column(type="datetimetz")
-     * @Assert\NotNull()
-     */
-    private $last_seen;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Draft", mappedBy="user_id")
@@ -82,16 +79,6 @@ class user extends AbstractSteamUser
     public function setDateCreated(?\DateTimeInterface $date_created): self
     {
         $this->date_created = $date_created;
-    }
-
-    public function getLastSeen(): ?\DateTimeInterface
-    {
-        return $this->last_seen;
-    }
-
-    public function setLastSeen(?\DateTimeInterface $last_seen): self
-    {
-        $this->last_seen = $last_seen;
     }
 
     /**
