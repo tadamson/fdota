@@ -116,4 +116,38 @@ class Draft
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    private function validCost() :bool
+    {
+        if (count($this->picks) > 0) {
+            $pick_total = 0;
+            foreach ($this->picks as $pick)
+            /** @var DraftPick $pick */
+            {
+                if ($pick->getCost() > 0)
+                    $pick_total += $pick->getCost();
+            }
+            return ($pick_total > 0 && $pick_total <= $this->getWallet());
+        }
+        return true; // no picks made, might as well consider that valid
+    }
+
+    /**
+     * @return bool
+     */
+    private function validPickCount(): bool
+    {
+        return !(count($this->getPicks()) > 5);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->validCost() && $this->validPickCount();
+    }
 }
