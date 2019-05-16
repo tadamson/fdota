@@ -37,6 +37,10 @@ class Draft
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\DraftPick", mappedBy="draft_id")
+     * @Assert\Count(
+     *     max = 5,
+     *     maxMessage = "Unable to draft more than {{limit}} picks"
+     * )
      */
     private $picks;
 
