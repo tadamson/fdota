@@ -58,7 +58,6 @@ class Draft
     public function setWallet(int $wallet): self
     {
         $this->wallet = $wallet;
-
         return $this;
     }
 
@@ -70,7 +69,6 @@ class Draft
     public function setUserId(?User $user_id): self
     {
         $this->user_id = $user_id;
-
         return $this;
     }
 
@@ -82,7 +80,6 @@ class Draft
     public function setLeagueId(?League $league): self
     {
         $this->league = $league;
-
         return $this;
     }
 

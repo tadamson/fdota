@@ -51,7 +51,6 @@ class PlayerStats
     public function setPlayer(?Player $player): self
     {
         $this->player = $player;
-
         return $this;
     }
 
@@ -63,7 +62,6 @@ class PlayerStats
     public function setFantasyPoints(float $fantasy_points): self
     {
         $this->fantasy_points = $fantasy_points;
-
         return $this;
     }
 
@@ -75,7 +73,6 @@ class PlayerStats
     public function setDateRecorded(\DateTimeInterface $date_recorded): self
     {
         $this->date_recorded = $date_recorded;
-
         return $this;
     }
 
@@ -87,7 +84,6 @@ class PlayerStats
     public function setMatchCount(int $match_count): self
     {
         $this->match_count = $match_count;
-
         return $this;
     }
 }

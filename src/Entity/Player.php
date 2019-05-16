@@ -76,7 +76,6 @@ class Player
     public function setSteamId(?int $SteamId): self
     {
         $this->steam_id = $SteamId;
-
         return $this;
     }
 
@@ -88,7 +87,6 @@ class Player
     public function setName(string $name): self
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -100,7 +98,6 @@ class Player
     public function setTeamRole(int $team_role): self
     {
         $this->team_role = $team_role;
-
         return $this;
     }
 
@@ -112,7 +109,6 @@ class Player
     public function setBioLink(?string $bio_link): self
     {
         $this->bio_link = $bio_link;
-
         return $this;
     }
 
@@ -124,7 +120,6 @@ class Player
     public function setTeam(?Team $team): self
     {
         $this->team = $team;
-
         return $this;
     }
 
@@ -136,7 +131,6 @@ class Player
     public function setDraftCost(int $draft_cost): self
     {
         $this->draft_cost = $draft_cost;
-
         return $this;
     }
 

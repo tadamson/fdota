@@ -56,9 +56,10 @@ class User extends AbstractSteamUser
         return $this->name;
     }
 
-    public function setName(?string $name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getActive(): ?bool
@@ -66,9 +67,10 @@ class User extends AbstractSteamUser
         return $this->active;
     }
 
-    public function setActive(?bool $active)
+    public function setActive(?bool $active): self
     {
         $this->active = $active;
+        return $this;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
@@ -79,6 +81,7 @@ class User extends AbstractSteamUser
     public function setDateCreated(?\DateTimeInterface $date_created): self
     {
         $this->date_created = $date_created;
+        return $this;
     }
 
     /**

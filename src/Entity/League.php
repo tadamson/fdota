@@ -79,9 +79,10 @@ class League {
         return $this->name;
     }
 
-    public function setName(?string $name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -89,9 +90,10 @@ class League {
         return $this->description;
     }
 
-    public function setDescription(?string $description)
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     public function getActive(): ?bool
@@ -99,9 +101,10 @@ class League {
         return $this->active;
     }
 
-    public function setActive(?bool $active)
+    public function setActive(?bool $active): self
     {
         $this->active = $active;
+        return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
@@ -109,9 +112,10 @@ class League {
         return $this->start_date;
     }
 
-    public function setStartDate(?\DateTimeInterface $start_date):self
+    public function setStartDate(?\DateTimeInterface $start_date): self
     {
         $this->start_date = $start_date;
+        return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
@@ -119,9 +123,10 @@ class League {
         return $this->end_date;
     }
 
-    public function setEndDate(?\DateTimeInterface $end_date):self
+    public function setEndDate(?\DateTimeInterface $end_date): self
     {
         $this->end_date = $end_date;
+        return $this;
     }
 
     /**

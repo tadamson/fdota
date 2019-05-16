@@ -17,18 +17,6 @@ class DraftPick
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Draft", inversedBy="picks")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $draft_id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Player")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $player_id;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $cost;
@@ -58,7 +46,6 @@ class DraftPick
     public function setCost(int $cost): self
     {
         $this->cost = $cost;
-
         return $this;
     }
 
@@ -70,7 +57,6 @@ class DraftPick
     public function setDraft(?Draft $draft): self
     {
         $this->draft = $draft;
-
         return $this;
     }
 
@@ -82,7 +68,6 @@ class DraftPick
     public function setPlayer(?Player $player): self
     {
         $this->player = $player;
-
         return $this;
     }
 }

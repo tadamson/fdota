@@ -87,9 +87,10 @@ class Tournament {
         return $this->valve_league_id;
     }
 
-    public function setValveLeagueId(?int $valve_league_id)
+    public function setValveLeagueId(?int $valve_league_id): self
     {
         $this->valve_league_id = $valve_league_id;
+        return $this;
     }
 
     public function getName(): ?string
@@ -97,9 +98,10 @@ class Tournament {
         return $this->name;
     }
 
-    public function setName(?string $name)
+    public function setName(?string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
@@ -110,6 +112,7 @@ class Tournament {
     public function setStartDate(?\DateTimeInterface $start_date): self
     {
         $this->start_date = $start_date;
+        return $this;
     }
 
     public function getEndDate(): ?\DateTimeInterface
@@ -120,6 +123,7 @@ class Tournament {
     public function setEndDate(?\DateTimeInterface $end_date): self
     {
         $this->end_date = $end_date;
+        return $this;
     }
 
     /**
