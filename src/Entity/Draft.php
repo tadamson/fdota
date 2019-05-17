@@ -119,17 +119,25 @@ class Draft
     }
 
     /**
+     * @return int
+     */
+    private function currentPickCost(): int
+    {
+        $total = 0;
+        foreach ($this->getPicks() as $pick)
+        {
+            $total += $pick->getCost();
+        }
+        return $total;
+    }
+
+    /**
      * @return bool
      */
     private function validCost(): bool
     {
         if (count($this->getPicks()) > 0) {
-            $pick_total = 0;
-            foreach ($this->getPicks() as $pick)
-            {
-                if ($pick->getCost() > 0)
-                    $pick_total += $pick->getCost();
-            }
+            $pick_total = $this->currentPickCost();
             return ($pick_total > 0 && $pick_total <= $this->getWallet());
         }
         return true; // no picks made, might as well consider that valid
@@ -149,5 +157,13 @@ class Draft
     public function isValid(): bool
     {
         return $this->validCost() && $this->validPickCount();
+    }
+
+    /**
+     * @return int
+     */
+    public function getWalletAvailable(): int
+    {
+        return ($this->getWallet() - $this->currentPickCost());
     }
 }
