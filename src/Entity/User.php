@@ -96,7 +96,7 @@ class User extends AbstractSteamUser
     {
         if (!$this->drafts->contains($draft)) {
             $this->drafts[] = $draft;
-            $draft->setUserId($this);
+            $draft->setUser($this);
         }
 
         return $this;
@@ -107,8 +107,8 @@ class User extends AbstractSteamUser
         if ($this->drafts->contains($draft)) {
             $this->drafts->removeElement($draft);
             // set the owning side to null (unless already changed)
-            if ($draft->getUserId() === $this) {
-                $draft->setUserId(null);
+            if ($draft->getUser() === $this) {
+                $draft->setUser(null);
             }
         }
 

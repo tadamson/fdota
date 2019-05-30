@@ -27,7 +27,7 @@ class Draft
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="drafts")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\League", inversedBy="drafts")
@@ -65,14 +65,14 @@ class Draft
         return $this;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUser(?User $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
         return $this;
     }
 
@@ -81,7 +81,7 @@ class Draft
         return $this->league;
     }
 
-    public function setLeagueId(?League $league): self
+    public function setLeague(?League $league): self
     {
         $this->league = $league;
         return $this;
@@ -146,7 +146,7 @@ class Draft
     /**
      * @return bool
      */
-    private function validPickCount(): bool
+    private function validPickAmount(): bool
     {
         return !(count($this->getPicks()) > 5);
     }
@@ -156,7 +156,7 @@ class Draft
      */
     public function isValid(): bool
     {
-        return $this->validCost() && $this->validPickCount();
+        return $this->validCost() && $this->validPickAmount();
     }
 
     /**
