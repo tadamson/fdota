@@ -19,32 +19,31 @@ class PlayerRepository extends ServiceEntityRepository
         parent::__construct($registry, Player::class);
     }
 
-    // /**
-    //  * @return Player[] Returns an array of Player objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param int $pos
+     * @return array
+     */
+    public function findAllByPosition(int $pos = 1)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.team_role = :pos')
+            ->setParameter('pos', $pos)
+            ->orderBy('p.name')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getArrayResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Player
+    /**
+     * @param int $cost
+     * @return array
+     */
+    public function findAllUnderCost(int $cost)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('p.draft_cost < :cost')
+            ->setParameter('cost', $cost)
+            ->orderBy('p.draft_cost', 'DESC')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getArrayResult();
     }
-    */
 }

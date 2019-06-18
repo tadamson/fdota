@@ -17,17 +17,26 @@ use App\Form\PlayerType;
  */
 class PlayerController extends FOSRestController
 {
-    /**
-     * Lists all players
+    /*
      * @Rest\Get("/players")
-     *
      * @return Response
      */
-    public function getPlayerAction()
+    public function getPlayersAction()
+    {
+        $r = $this->getDoctrine()->getRepository(Player::class);
+        $players = $r->findAll();
+        return $this->handleView($this->view($players));
+    }
+
+    /**
+     * @Rest\Get("/player/{slug}")
+     * @return Response
+     */
+    public function getPlayerAction($slug)
     {
         $repository = $this->getDoctrine()->getRepository(Player::class);
-        $players = $repository->findall();
-        return $this->handleView($this->view($players));
+        $player = $repository->findPlayer($slug);
+        return $this->handleView($this->view($player));
     }
 
     /**
