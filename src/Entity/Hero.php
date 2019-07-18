@@ -41,7 +41,7 @@ class Hero
     public function setId(?int $id): self
     {
         $this->id = $id;
-        return $self;
+        return $this;
     }
 
     public function getName(): ?string

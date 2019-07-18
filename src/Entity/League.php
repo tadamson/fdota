@@ -177,7 +177,7 @@ class League {
     {
         if (!$this->drafts->contains($draft)) {
             $this->drafts[] = $draft;
-            $draft->setLeagueId($this);
+            $draft->setLeague($this);
         }
 
         return $this;
@@ -188,8 +188,8 @@ class League {
         if ($this->drafts->contains($draft)) {
             $this->drafts->removeElement($draft);
             // set the owning side to null (unless already changed)
-            if ($draft->getLeagueId() === $this) {
-                $draft->setLeagueId(null);
+            if ($draft->getLeague() === $this) {
+                $draft->setLeague(null);
             }
         }
 
